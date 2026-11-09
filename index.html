@@ -1,0 +1,519 @@
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Alishuuu ❤️</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:Georgia,serif;
+  background:linear-gradient(135deg,#180b29,#54134c,#a52b68);
+  color:white;
+  text-align:center;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+.screen{
+  min-height:100vh;
+  display:none;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  padding:25px;
+  position:relative;
+  z-index:1;
+}
+
+.screen.active{
+  display:flex;
+}
+
+h1{
+  font-size:clamp(32px,8vw,52px);
+  color:#ffd6eb;
+  margin-bottom:20px;
+}
+
+h2{
+  font-size:27px;
+  color:#ffe1ef;
+  margin-bottom:18px;
+}
+
+p{
+  font-size:19px;
+  line-height:1.7;
+  max-width:600px;
+  margin:12px auto;
+}
+
+button{
+  background:linear-gradient(45deg,#ff4d94,#ff9ac5);
+  border:2px solid white;
+  border-radius:30px;
+  padding:14px 28px;
+  color:white;
+  font-size:17px;
+  margin:15px;
+  cursor:pointer;
+  box-shadow:0 0 20px #ff80b5;
+}
+
+button:active{
+  transform:scale(.96);
+}
+
+.heart{
+  position:fixed;
+  bottom:-30px;
+  animation:float 7s linear forwards;
+  pointer-events:none;
+  z-index:0;
+}
+
+@keyframes float{
+  to{
+    transform:translateY(-110vh) rotate(360deg);
+    opacity:0;
+  }
+}
+
+.gift{
+  font-size:110px;
+  cursor:pointer;
+  animation:bounce 1.5s infinite;
+}
+
+@keyframes bounce{
+  50%{transform:translateY(-15px)}
+}
+
+.balloon{
+  display:inline-block;
+  font-size:65px;
+  cursor:pointer;
+  margin:8px;
+  transition:transform .3s;
+}
+
+.balloon:active{
+  transform:scale(1.3);
+}
+
+.letter{
+  background:#fff0f6;
+  color:#7d1749;
+  padding:25px;
+  border-radius:20px;
+  max-width:520px;
+  line-height:1.8;
+  box-shadow:0 0 25px #ff9ac5;
+}
+
+#musicBtn{
+  position:fixed;
+  top:12px;
+  right:12px;
+  z-index:10;
+  padding:10px 15px;
+  margin:0;
+  font-size:14px;
+}
+
+.small{
+  font-size:14px;
+  color:#ffd5e8;
+}
+
+#balloonMsg{
+  margin-top:25px;
+  padding:20px;
+  border-radius:20px;
+  background:rgba(255,255,255,.12);
+  box-shadow:0 0 20px #ff80b5;
+  max-width:500px;
+  min-height:110px;
+  width:100%;
+}
+</style>
+</head>
+
+<body>
+
+<audio id="bgMusic" src="./music.mp3" loop preload="auto"></audio>
+
+<button id="musicBtn" onclick="toggleMusic()">🎵 Music ON</button>
+
+<!-- SCREEN 1: WELCOME -->
+<section class="screen active" id="s1">
+
+  <h1>🎂 Happy Birthday 🎂</h1>
+
+  <h2>My Dear Alishuuu ❤️</h2>
+
+  <p>
+    Aaj ka din bahut special hai,
+    kyunki aaj ek bahut special insaan ka birthday hai! 🥹💗
+  </p>
+
+  <p>Ready ho ek chhote se surprise ke liye?</p>
+
+  <button onclick="startSurprise()">
+    Yes, Let's Go 💝
+  </button>
+
+  <p class="small">
+    Tap to start your birthday surprise and music 🎶
+  </p>
+
+</section>
+
+<!-- SCREEN 2: BIRTHDAY BALLOONS -->
+<section class="screen" id="s2">
+
+  <h1>🎈 Birthday Balloons 🎈</h1>
+
+  <p>
+    Alishuuu, balloons par tap karo
+    aur apne special messages dekho! 💗
+  </p>
+
+  <div>
+
+    <span class="balloon"
+    onclick="pop(this,'Meri Alishuuu, hamesha khush reh aur apni pyari si smile kabhi mat khona! 🥺')">
+    🎈
+    </span>
+
+    <span class="balloon"
+    onclick="pop(this,'Teri zindagi khushiyon se bhari rahe aur tere saare sapne poore hon! ❤️')">
+    🎈
+    </span>
+
+    <span class="balloon"
+    onclick="pop(this,'Hamesha haste-khelte reh meri cutie Alishuuu! Tu bahut special hai! 😽')">
+    🎈
+    </span>
+
+  </div>
+
+  <div id="balloonMsg">
+    <p>🎀 Kisi bhi balloon par tap karo 💗</p>
+  </div>
+
+  <button onclick="next(3)">
+    Next Surprise ➜
+  </button>
+
+</section>
+
+<!-- SCREEN 3: HINDI SPECIAL WISHES -->
+<section class="screen" id="s3">
+
+  <h1>💖 Dil Se Shubhkaamnaayein 💖</h1>
+
+  <p>Pyari Alishuuu, ❤️</p>
+
+  <p>
+    Janamdin par meri dua hai ki teri zindagi
+    khushiyon se bhari rahe, dher saari khoobsurat
+    yaadein banein aur tere chehre par hamesha
+    muskurahat rahe. 🥰
+  </p>
+
+  <p>
+    Teri har khwahish poori ho, tujhe har kadam par
+    kamyabi mile aur tera har aane wala din
+    pehle se bhi zyada khoobsurat ho. 🌸
+  </p>
+
+  <p>
+    Bas yunhi chamakti reh, hansti reh aur
+    apni pyari si muskurahat se sabka dil
+    khush karti reh. ✨
+  </p>
+
+  <h2>Khush Rehna Meri Cutie! 🫶🏻😽</h2>
+
+  <button onclick="next(4)">
+    Aage Chalo 💌
+  </button>
+
+</section>
+
+<!-- SCREEN 4: LETTER -->
+<section class="screen" id="s4">
+
+  <h1>💌 Ek Pyara Sa Khat</h1>
+
+  <div class="letter">
+
+    <h2>Dear Alishuuu ❤️</h2>
+
+    <p>
+      Is khaas din par bas itna kehna hai ki
+      tumhari zindagi ka har naya din khushiyon
+      aur naye maukon se bhara ho.
+    </p>
+
+    <p>
+      Apni pyari si smile kabhi mat khona.
+      Hamesha khush raho aur apne sapno ki taraf
+      aage badhti raho.
+    </p>
+
+    <p>
+      <b>Janamdin ki dher saari badhai! 🎂</b>
+    </p>
+
+    <p>Bahut saari shubhkaamnaayein 💗</p>
+
+  </div>
+
+  <button onclick="next(5)">
+    Apna Gift Kholo 🎁
+  </button>
+
+</section>
+
+<!-- SCREEN 5: GIFT -->
+<section class="screen" id="s5">
+
+  <h1>🎁 Tumhare Liye Ek Gift 🎁</h1>
+
+  <p>Alishuuu, tumhare liye ek special gift hai!</p>
+
+  <div class="gift" onclick="openGift()">🎁</div>
+
+  <p id="giftMsg">Gift box par tap karo 💝</p>
+
+  <button onclick="openGift()">
+    Gift Kholo ❤️
+  </button>
+
+</section>
+
+<!-- SCREEN 6: PERSONAL MESSAGE -->
+<section class="screen" id="s6">
+
+  <h1>🌸 Ek Khaas Paighaam 🌸</h1>
+
+  <p>Happy Birthday Meri Alishuuu ❤️</p>
+
+  <h2>Hamesha Khush Rehna! 💗</h2>
+
+  <p>
+    Meri Alishuuu, tu apni zindagi mein hamesha khush reh,
+    hamesha haste reh aur apni pyari si smile kabhi mat khona. 🥺
+  </p>
+
+  <p>
+    Apni zindagi mein hamesha achhe se haste-khelte reh,
+    har din khushiyon ke saath bita aur apne saare sapne poore karna.
+  </p>
+
+  <p>
+    Teri har khwahish poori ho, tere chehre par hamesha
+    muskurahat rahe aur tujhe zindagi ki saari khushiyan milein.
+  </p>
+
+  <h2>Meri Cutie Alishuuu 🥺🫶🏻😽</h2>
+
+  <p>Once Again, Happy Birthday! 🎂💖</p>
+
+  <button onclick="next(7)">
+    Final Surprise 🎊
+  </button>
+
+</section>
+
+<!-- SCREEN 7: FINAL -->
+<section class="screen" id="s7">
+
+  <h1>🎉 Happy Birthday Alishuuu! 🎉</h1>
+
+  <div style="font-size:85px">
+    🎂💖🎈
+  </div>
+
+  <p>
+    Ek baar phir tumhe janamdin ki dher saari badhai!
+  </p>
+
+  <h2>Hamesha Khush Raho! ❤️</h2>
+
+  <p>
+    Tumhara aane wala har saal khushiyon aur
+    khoobsurat yaadon se bhara rahe. 🌹
+  </p>
+
+  <button onclick="restart()">
+    Dobara Dekho 🔄
+  </button>
+
+</section>
+
+<script>
+
+const audio=document.getElementById("bgMusic");
+
+audio.volume=0.85;
+
+// MUSIC
+
+function updateMusic(){
+
+  document.getElementById("musicBtn").innerText =
+    audio.paused ? "🎵 Music OFF" : "🎵 Music ON";
+
+}
+
+function playMusic(){
+
+  audio.play().then(()=>{
+    updateMusic();
+  }).catch(()=>{
+    updateMusic();
+  });
+
+}
+
+function toggleMusic(){
+
+  if(audio.paused){
+    playMusic();
+  }else{
+    audio.pause();
+    updateMusic();
+  }
+
+}
+
+// START
+
+function startSurprise(){
+
+  playMusic();
+  next(2);
+
+}
+
+// SCREEN CHANGE
+
+function next(number){
+
+  document.querySelectorAll(".screen").forEach(s=>{
+    s.classList.remove("active");
+  });
+
+  document.getElementById("s"+number).classList.add("active");
+
+  window.scrollTo(0,0);
+
+}
+
+// BALLOON MESSAGES
+
+function pop(element,message){
+
+  element.style.visibility="hidden";
+
+  document.getElementById("balloonMsg").innerHTML =
+
+    `<p style="font-size:20px;line-height:1.7">
+      ${message}
+    </p>
+
+    <p style="font-size:32px;margin-top:15px">
+      ✨ 🫶🏻 😽
+    </p>`;
+
+  makeHearts();
+
+}
+
+// GIFT
+
+function openGift(){
+
+  document.getElementById("giftMsg").innerHTML =
+
+    "🎉 Surprise! Alishuuu, tumhari life hamesha khushiyon se bhari rahe! ❤️";
+
+  setTimeout(()=>{
+    next(6);
+  },1800);
+
+}
+
+// FLOATING HEARTS
+
+function makeHearts(){
+
+  const heart=document.createElement("div");
+
+  heart.className="heart";
+
+  heart.innerHTML=[
+    "💗","💕","❤️","💖","🌸","✨"
+  ][Math.floor(Math.random()*6)];
+
+  heart.style.left=Math.random()*100+"vw";
+
+  heart.style.fontSize=(20+Math.random()*25)+"px";
+
+  document.body.appendChild(heart);
+
+  setTimeout(()=>{
+    heart.remove();
+  },7000);
+
+}
+
+setInterval(makeHearts,700);
+
+// RESTART
+
+function restart(){
+
+  document.querySelectorAll(".screen").forEach(s=>{
+    s.classList.remove("active");
+  });
+
+  document.getElementById("s1").classList.add("active");
+
+  document.querySelectorAll(".balloon").forEach(b=>{
+    b.style.visibility="visible";
+  });
+
+  document.getElementById("balloonMsg").innerHTML =
+    "<p>🎀 Kisi bhi balloon par tap karo 💗</p>";
+
+  document.getElementById("giftMsg").innerText =
+    "Gift box par tap karo 💝";
+
+  playMusic();
+
+  window.scrollTo(0,0);
+
+}
+
+// AUTOPLAY ATTEMPT
+
+window.addEventListener("load",()=>{
+  playMusic();
+});
+
+</script>
+
+</body>
+</html>
